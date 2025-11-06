@@ -10,3 +10,37 @@
     background-size: 20px 20px;
   }
 }
+
+:root{
+  --bg-start: #f8fafc; /* light neutral */
+  --bg-end: #ffffff;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --primary: #7c3aed;
+}
+
+html,body,#root{
+  height:100%;
+}
+
+@layer base {
+  body{
+    @apply font-sans antialiased text-slate-800 bg-gradient-to-br from-[color:var(--bg-start)] to-[color:var(--bg-end)];
+  }
+}
+
+@layer components {
+  /* primary link/button styles */
+  .btn-primary{
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 bg-primary-600 text-white hover:bg-primary-700 transition;
+  }
+
+  .muted {
+    color: var(--muted);
+  }
+
+  /* subtle card surface */
+  .card {
+    @apply bg-white dark:bg-slate-800/60 shadow-sm rounded-lg p-6;
+  }
+}

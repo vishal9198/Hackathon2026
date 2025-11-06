@@ -19,7 +19,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
+          <div className="min-h-screen transition-colors bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100">
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
