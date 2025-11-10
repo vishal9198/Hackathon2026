@@ -39,11 +39,11 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20"></div>
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <section className="relative pt-32 pb-20 px-4 overflow-hidden hero-bg">
+        {/* keep only subtle grid pattern; remove the strong gradient overlay so the background image shows through */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
 
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative max-w-7xl mx-auto hero-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -56,8 +56,8 @@ const Home = () => {
               transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
               className="inline-block mb-6"
             >
-              <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-4 rounded-2xl shadow-2xl">
-                <Code2 className="w-16 h-16 text-white" />
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-2xl overflow-hidden">
+                <img src="/1.png" alt="logo" className="w-full h-full object-cover" />
               </div>
             </motion.div>
 
@@ -108,8 +108,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 px-4 bg-white dark:bg-gray-900 hero-bg">
+        <div className="max-w-7xl mx-auto hero-content">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -152,29 +152,35 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20 hero-bg">
+        <div className="max-w-7xl mx-auto hero-content">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 md:p-16 text-center text-white shadow-2xl"
+            className="relative rounded-3xl p-12 md:p-16 text-center text-white shadow-2xl overflow-hidden"
+            style={{ backgroundImage: "url('/image6.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
-            <Zap className="w-16 h-16 mx-auto mb-6" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Level Up?
-            </h2>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join our community of passionate coders and start your journey to becoming a competitive programming expert
-            </p>
-            <Link
-              to="/signup"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all"
-            >
-              Start Coding Now
-              <Award className="w-5 h-5" />
-            </Link>
+            {/* overlay for readability */}
+            <div className="absolute inset-0 bg-black/30 dark:bg-black/50" />
+
+            <div className="relative z-10">
+              <Zap className="w-16 h-16 mx-auto mb-6 text-white" />
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                Ready to Level Up?
+              </h2>
+              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto text-white/95">
+                Join our community of passionate coders and start your journey to becoming a competitive programming expert
+              </p>
+              <Link
+                to="/signup"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all"
+              >
+                Start Coding Now
+                <Award className="w-5 h-5" />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

@@ -39,7 +39,7 @@ const About = () => {
         >
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-              About CodeArena
+              About D-Coder
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Your ultimate destination for mastering competitive programming and acing technical interviews
@@ -49,7 +49,7 @@ const About = () => {
           <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-12 mb-16 border border-gray-200 dark:border-gray-700">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Story</h2>
             <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-4">
-              CodeArena was founded with a simple vision: to democratize access to high-quality competitive programming resources.
+              D-Coder was founded with a simple vision: to democratize access to high-quality competitive programming resources.
               We believe that everyone should have the opportunity to develop their coding skills and achieve their career goals.
             </p>
             <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">

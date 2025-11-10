@@ -17,6 +17,8 @@
   --surface: #ffffff;
   --muted: #6b7280;
   --primary: #7c3aed;
+  --accent: #a78bfa;
+  --text: #0f172a;
 }
 
 html,body,#root{
@@ -25,22 +27,64 @@ html,body,#root{
 
 @layer base {
   body{
-    @apply font-sans antialiased text-slate-800 bg-gradient-to-br from-[color:var(--bg-start)] to-[color:var(--bg-end)];
+    @apply font-sans antialiased;
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+    color: var(--text);
   }
 }
 
 @layer components {
   /* primary link/button styles */
   .btn-primary{
-    @apply inline-flex items-center justify-center rounded-md px-4 py-2 bg-primary-600 text-white hover:bg-primary-700 transition;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .375rem;
+    padding: .5rem 1rem;
+    background-color: var(--primary);
+    color: white;
+    transition: background-color .15s ease-in-out;
   }
 
-  .muted {
-    color: var(--muted);
-  }
+  .btn-primary:hover{ filter: brightness(.95); }
+
+  .muted { color: var(--muted); }
 
   /* subtle card surface */
   .card {
-    @apply bg-white dark:bg-slate-800/60 shadow-sm rounded-lg p-6;
+    background-color: var(--surface);
+    box-shadow: 0 1px 3px rgba(2,6,23,0.06);
+    border-radius: .5rem;
+    padding: 1.5rem;
   }
+
+  /* brand gradient utilities that follow current palette */
+  .brand-gradient { background: linear-gradient(90deg, var(--primary), var(--accent)); color: white; }
+  .brand-gradient-br { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; }
+
+  /* hero background with subtle overlay - uses public/background.png */
+  .hero-bg {
+    position: relative;
+  /* served from public/ as /background.png */
+  background-image: url('/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* light overlay for readability; slightly more transparent to show image */
+    background-color: rgba(255,255,255,0.45);
+    pointer-events: none;
+  }
+
+  /* darker overlay in dark mode for legibility */
+  .dark .hero-bg::before { background-color: rgba(2,6,23,0.6); }
+
+  /* content inside hero should be above overlay */
+  .hero-content { position: relative; z-index: 10; }
 }

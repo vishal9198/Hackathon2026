@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Lock, User, Code2, ArrowRight } from 'lucide-react';
+import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Signup = () => {
@@ -30,20 +30,20 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-12 px-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20 flex items-center justify-center">
+  <div className="min-h-screen pt-20 pb-12 px-4 flex items-center justify-center hero-bg">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md"
+        className="w-full max-w-md hero-content"
       >
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-200 dark:border-gray-700">
+  <div className="bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl p-8 border border-gray-200 dark:border-gray-700 backdrop-blur-sm">
           <div className="text-center mb-8">
-            <div className="inline-flex p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4">
-              <Code2 className="w-8 h-8 text-white" />
+            <div className="inline-flex w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4 overflow-hidden items-center justify-center p-0">
+              <img src="/1.png" alt="logo" className="w-full h-full object-cover" />
             </div>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              Join CodeArena
+              Join D-Coder
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               Start your competitive coding journey today
