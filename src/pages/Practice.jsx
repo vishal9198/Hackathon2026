@@ -71,12 +71,12 @@ const Practice = () => {
                 <select
                   value={selectedDifficulty}
                   onChange={(e) => setSelectedDifficulty(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none text-gray-900 dark:text-white"
                 >
-                  <option value="all">All Difficulty</option>
-                  <option value="Easy">Easy</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Hard">Hard</option>
+                  <option value="all" className="text-gray-900 dark:text-white">All Difficulty</option>
+                  <option value="Easy" className="text-gray-900 dark:text-white">Easy</option>
+                  <option value="Medium" className="text-gray-900 dark:text-white">Medium</option>
+                  <option value="Hard" className="text-gray-900 dark:text-white">Hard</option>
                 </select>
               </div>
 
@@ -85,13 +85,13 @@ const Practice = () => {
                 <select
                   value={selectedTopic}
                   onChange={(e) => setSelectedTopic(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none text-gray-900 dark:text-white"
                 >
-                  <option value="all">All Topics</option>
-                  <option value="Array">Array</option>
-                  <option value="String">String</option>
-                  <option value="Linked List">Linked List</option>
-                  <option value="Math">Math</option>
+                  <option value="all" className="text-gray-900 dark:text-white">All Topics</option>
+                  <option value="Array" className="text-gray-900 dark:text-white">Array</option>
+                  <option value="String" className="text-gray-900 dark:text-white">String</option>
+                  <option value="Linked List" className="text-gray-900 dark:text-white">Linked List</option>
+                  <option value="Math" className="text-gray-900 dark:text-white">Math</option>
                 </select>
               </div>
             </div>

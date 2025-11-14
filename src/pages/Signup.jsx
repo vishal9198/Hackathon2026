@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 const Signup = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const API = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,14 +16,31 @@ const Signup = () => {
     role: 'user'
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
-    login({ email: formData.email, name: formData.name, role: formData.role }, formData.role);
-    navigate(formData.role === 'admin' ? '/admin' : '/dashboard');
+    try {
+      const res = await fetch(`${API}/api/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ fullName: formData.name, email: formData.email, password: formData.password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.message || 'Signup failed');
+        return;
+      }
+      // set auth in context and navigate
+      login({ _id: data._id, fullName: data.fullName, email: data.email }, formData.role);
+      navigate(formData.role === 'admin' ? '/admin' : '/dashboard');
+    } catch (err) {
+      console.error('Signup error', err);
+      alert('Signup failed, please try again');
+    }
   };
 
   const handleChange = (e) => {

@@ -11,22 +11,34 @@
   }
 }
 
-:root{
-  --bg-start: #f8fafc; /* light neutral */
+:root {
+  --bg-start: #f8fafc;
   --bg-end: #ffffff;
   --surface: #ffffff;
-  --muted: #6b7280;
-  --primary: #7c3aed;
-  --accent: #a78bfa;
-  --text: #0f172a;
+  --muted: #71717a;
+  --primary: #0ea5e9;
+  --accent: #d946ef;
+  --text: #18181b;
 }
 
-html,body,#root{
-  height:100%;
+.dark {
+  --bg-start: #18181b;
+  --bg-end: #27272a;
+  --surface: #27272a;
+  --muted: #a1a1aa;
+  --primary: #0ea5e9;
+  --accent: #d946ef;
+  --text: #fafafa;
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }
 
 @layer base {
-  body{
+  body {
     @apply font-sans antialiased;
     background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
     color: var(--text);
@@ -34,39 +46,45 @@ html,body,#root{
 }
 
 @layer components {
-  /* primary link/button styles */
-  .btn-primary{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: .375rem;
-    padding: .5rem 1rem;
-    background-color: var(--primary);
-    color: white;
-    transition: background-color .15s ease-in-out;
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200;
   }
 
-  .btn-primary:hover{ filter: brightness(.95); }
+  .btn-primary {
+    @apply bg-primary-500 text-white hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/20;
+  }
 
-  .muted { color: var(--muted); }
+  .btn-secondary {
+    @apply bg-neutral-100 text-neutral-900 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700;
+  }
 
-  /* subtle card surface */
+  .btn-outline {
+    @apply border-2 border-neutral-200 text-neutral-700 hover:bg-neutral-100 hover:border-primary-500 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:border-primary-500;
+  }
+
   .card {
-    background-color: var(--surface);
-    box-shadow: 0 1px 3px rgba(2,6,23,0.06);
-    border-radius: .5rem;
-    padding: 1.5rem;
+    @apply bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg rounded-xl shadow-xl shadow-neutral-500/5 dark:shadow-neutral-900/5 border border-neutral-200/50 dark:border-neutral-800/50;
   }
 
-  /* brand gradient utilities that follow current palette */
-  .brand-gradient { background: linear-gradient(90deg, var(--primary), var(--accent)); color: white; }
-  .brand-gradient-br { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; }
+  .input {
+    @apply w-full px-4 py-2 rounded-lg border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500 dark:focus:border-primary-500 transition-all duration-200;
+  }
 
-  /* hero background with subtle overlay - uses public/background.png */
+  .label {
+    @apply block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1;
+  }
+
+  .heading-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent font-bold;
+  }
+  
+  .surface {
+    @apply bg-white/90 dark:bg-neutral-900/90 backdrop-blur-lg;
+  }
+
   .hero-bg {
     position: relative;
-  /* served from public/ as /background.png */
-  background-image: url('/background.png');
+    background-image: url('/background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -77,14 +95,17 @@ html,body,#root{
     content: '';
     position: absolute;
     inset: 0;
-    /* light overlay for readability; slightly more transparent to show image */
-    background-color: rgba(255,255,255,0.45);
+    /* make overlay much lighter in bright mode so image is more visible */
+    background-color: rgba(255,255,255,0.05);
     pointer-events: none;
   }
 
-  /* darker overlay in dark mode for legibility */
-  .dark .hero-bg::before { background-color: rgba(2,6,23,0.6); }
+  .dark .hero-bg::before {
+    background-color: rgba(2,6,23,0.6);
+  }
 
-  /* content inside hero should be above overlay */
-  .hero-content { position: relative; z-index: 10; }
+  .hero-content {
+    position: relative;
+    z-index: 10;
+  }
 }

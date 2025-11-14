@@ -1,7 +1,19 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { Code2, Trophy, TrendingUp, Target, Calendar, Award, CheckCircle, Clock } from 'lucide-react';
 
 const Dashboard = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // If not logged in, redirect to home
+    if (!user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
   const stats = [
     { label: 'Problems Solved', value: 127, icon: <CheckCircle className="w-6 h-6" />, color: 'from-green-500 to-emerald-600' },
     { label: 'Contest Participated', value: 18, icon: <Trophy className="w-6 h-6" />, color: 'from-blue-500 to-cyan-600' },

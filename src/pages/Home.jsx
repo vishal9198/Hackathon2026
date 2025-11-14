@@ -64,7 +64,7 @@ const Home = () => {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Master Competitive Coding
             </h1>
-            <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white dark:text-gray-300 mb-8 max-w-3xl mx-auto">
               Join thousands of developers solving problems, competing in contests, and climbing the leaderboard
             </p>
 
@@ -117,10 +117,10 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Everything You Need to Excel
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-white dark:text-gray-400 max-w-2xl mx-auto">
               Comprehensive tools and resources to accelerate your coding journey
             </p>
           </motion.div>

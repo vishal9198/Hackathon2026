@@ -7,16 +7,34 @@ import { useAuth } from '../context/AuthContext';
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     role: 'user'
   });
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login({ email: formData.email, role: formData.role }, formData.role);
-    navigate(formData.role === 'admin' ? '/admin' : '/dashboard');
+    setError('');
+    setIsLoading(true);
+
+    try {
+      const result = await login(formData.email, formData.password, formData.role);
+      if (result.success) {
+        navigate(formData.role === 'admin' ? '/admin' : '/dashboard');
+      } else {
+        setError(result.error);
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+      console.error('Login error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -44,6 +62,20 @@ const Login = () => {
             </p>
           </div>
 
+          {error && (
+            <div className="mb-4 p-4 bg-red-50 border-l-4 border-red-400 dark:bg-red-900/50 dark:border-red-600">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <svg className="h-5 w-5 text-red-400 dark:text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
+                </div>
+              </div>
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -98,10 +130,25 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
+              disabled={isLoading}
+              className={`w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
+                isLoading ? 'opacity-75 cursor-not-allowed' : 'hover:shadow-lg hover:scale-105'
+              }`}
             >
-              Login
-              <ArrowRight className="w-5 h-5" />
+              {isLoading ? (
+                <>
+                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span>Logging in...</span>
+                </>
+              ) : (
+                <>
+                  Login
+                  <ArrowRight className="w-5 h-5" />
+                </>
+              )}
             </button>
           </form>
 
